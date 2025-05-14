@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_executable(Thorn src/Main.cpp
         src/frontend/lex.cpp
-        src/frontend/lex.h)
+        src/frontend/lex.h
+        src/file.cpp
+        src/file.h)

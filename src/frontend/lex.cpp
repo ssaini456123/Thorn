@@ -36,6 +36,24 @@ namespace frontend
     {
       wchar_t curr_tok = expression[pos];
 
+      // Firstly check if we have a comment
+      bool comment = false;
+      if (verify_next_slot(pos, expression) && curr_tok == L'/')
+      {
+        pos++;
+
+        if (expression[pos] == L'/')
+        {
+          comment = true;
+        }
+      }
+
+      if (comment)
+      {
+        toks.push_back({COMMENT ,L"", pos});
+        break;
+      }
+
       std::wstring word = L"";
       std::wstring ident = L"";
 
@@ -45,7 +63,7 @@ namespace frontend
         pos++;
       }
 
-      if (word == L"LET" && verify_next_slot(pos, expression))
+      if (verify_next_slot(pos, expression) && word == L"LET")
       {
         pos++;
 
@@ -54,7 +72,7 @@ namespace frontend
           pos++;
         }
 
-        while (isalpha(expression[pos]) && verify_next_slot(pos, expression))
+        while (verify_next_slot(pos, expression) && isalpha(expression[pos]))
         {
           ident += expression[pos];
           pos++;

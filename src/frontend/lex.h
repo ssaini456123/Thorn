@@ -19,7 +19,7 @@ namespace frontend
     NOT, AND, OR, IMPLIES, IFF, END_OF_FILE, VAR, PROP_VAR,
 
     /* thorn specifics */
-    LET, EQUAL
+    LET, EQUAL, COMMENT
   };
 
   struct token
