@@ -7,7 +7,7 @@ using namespace frontend;
 
 int main()
 {
-  std::wstring expression = L"LET k = ¬A ∧ //B → C";
+  std::wstring expression = L"let k = ¬A ∧ //B → C";
   auto lexd = lex::tokenize(expression);
 
   return 0;

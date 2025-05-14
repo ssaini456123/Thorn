@@ -63,7 +63,7 @@ namespace frontend
         pos++;
       }
 
-      if (verify_next_slot(pos, expression) && word == L"LET")
+      if (verify_next_slot(pos, expression) && word == L"let")
       {
         pos++;
 
