@@ -57,7 +57,7 @@ namespace frontend
       std::wstring word = L"";
       std::wstring ident = L"";
 
-      while (isalpha(expression[pos]) && verify_next_slot(pos,expression) && !isspace(expression[pos]))
+      while (iswalpha(expression[pos]) && verify_next_slot(pos,expression) && !isspace(expression[pos]))
       {
         word += expression[pos];
         pos++;
@@ -67,12 +67,12 @@ namespace frontend
       {
         pos++;
 
-        while (isspace(expression[pos]) && verify_next_slot(pos, expression))
+        while (iswspace(expression[pos]) && verify_next_slot(pos, expression))
         {
           pos++;
         }
 
-        while (verify_next_slot(pos, expression) && isalpha(expression[pos]))
+        while (verify_next_slot(pos, expression) && iswalpha(expression[pos]))
         {
           ident += expression[pos];
           pos++;
@@ -114,7 +114,7 @@ namespace frontend
           toks.push_back({EQUAL, L"", pos});
           break;
 
-        default: // un-lexable (for right now this might be a identifier or pred)
+        default:
           break;
       }
       pos++;
