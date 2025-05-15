@@ -41,7 +41,7 @@ namespace frontend
     ~lex();
 
     static std::vector<token> tokenize(std::wstring expression);
-    static bool verify_next_slot(int pos, std::wstring expression);
+    static bool verify_next_slot(int pos, const std::wstring& expression);
   };
 }
 

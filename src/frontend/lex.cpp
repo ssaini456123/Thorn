@@ -14,9 +14,10 @@ namespace frontend
   {
   }
 
-  bool lex::verify_next_slot(int pos, std::wstring expression)
+  bool lex::verify_next_slot(int pos, const std::wstring& expression)
   {
-    int exp_len = expression.length();
+    size_t exp_len = expression.length();
+
     int updatedsz = pos + 1;
 
     if (exp_len < updatedsz)
@@ -54,8 +55,8 @@ namespace frontend
         break;
       }
 
-      std::wstring word = L"";
-      std::wstring ident = L"";
+      std::wstring word;
+      std::wstring ident;
 
       while (iswalpha(expression[pos]) && verify_next_slot(pos,expression) && !isspace(expression[pos]))
       {
@@ -78,40 +79,40 @@ namespace frontend
           pos++;
         }
 
-        toks.push_back({LET, ident, pos});
+        toks.emplace_back(LET, ident, pos);
       }
 
-      int wordlen = word.size();
+      size_t wordlen = word.size();
       if (wordlen == 1)
       {
         // prop-var
-        toks.push_back({PROP_VAR, word, pos});
+        toks.emplace_back(PROP_VAR, word, pos);
       }
 
       switch (curr_tok)
       {
         case L'¬':
-          toks.push_back({NOT, L"", pos});
+          toks.emplace_back(NOT, L"", pos);
           break;
 
         case L'∧':
-          toks.push_back({AND,L"", pos});
+          toks.emplace_back(AND,L"", pos);
           break;
 
         case L'∨':
-          toks.push_back({OR, L"", pos});
+          toks.emplace_back(OR, L"", pos);
           break;
 
         case L'→':
-          toks.push_back({IMPLIES, L"", pos});
+          toks.emplace_back(IMPLIES, L"", pos);
           break;
 
         case L'↔':
-          toks.push_back({IFF,L"",pos});
+          toks.emplace_back(IFF,L"",pos);
           break;
 
         case L'=':
-          toks.push_back({EQUAL, L"", pos});
+          toks.emplace_back(EQUAL, L"", pos);
           break;
 
         default:
